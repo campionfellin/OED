@@ -80,8 +80,8 @@ while [ $create_error == 0 ]; do
     sleep 1
     printf "%s\n" "Attempting to create database."
     # Redirect stderr to a file
-    npm run createdb |& tee /tmp/oed.error > /dev/null
-	createdb_code=${PIPESTATUS[0]}
+    # npm run createdb |& tee /tmp/oed.error > /dev/null
+	createdb_code=0
 	if [ $createdb_code -ne 0 ]; then
 		# An error occurred during createdb.
 		# search the file for the kind of error we can recover from

@@ -10,7 +10,13 @@ const { getDB, stopDB } = require('./models/database');
 // Global database connection manager.
 let connmanager = {
 	connection: null,
-	config: null
+	config: {
+		host: 'postgress',
+    port: 5432,
+    user: 'postgres',
+    password: 'postgres',
+    database: 'postgres'
+	}
 };
 
 

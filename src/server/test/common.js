@@ -43,11 +43,11 @@ let testDB = {
 
 function connectTestDB() {
 	const testDBConfig = {
-		user: process.env.OED_DB_TEST_USER || process.env.OED_DB_USER,
-		database: process.env.OED_DB_TEST_DATABASE,
-		password: process.env.OED_DB_TEST_PASSWORD || process.env.OED_DB_PASSWORD,
-		host: process.env.OED_DB_TEST_HOST || process.env.OED_DB_HOST,
-		port: process.env.OED_DB_TEST_PORT || process.env.OED_DB_PORT
+    host: 'postgres',
+    port: 5432,
+    user: 'test',
+    password: 'postgres',
+    database: 'travis_ci_test'
 	};
 
 	stopDB();

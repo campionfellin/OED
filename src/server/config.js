@@ -21,12 +21,12 @@ const config = {};
 
 // Database configuration is taken from environment variables (which are loaded by dotenv from the .env file)
 config.database = {
-	user: process.env.OED_DB_USER,
-	database: process.env.OED_DB_DATABASE,
-	password: process.env.OED_DB_PASSWORD,
-	host: process.env.OED_DB_HOST,
-	port: process.env.OED_DB_PORT
-};
+	host: 'postgress',
+	port: 5432,
+	user: 'postgres',
+	password: 'postgres',
+	database: 'postgres'
+}
 
 // Mail configuration
 let method = process.env.OED_MAIL_METHOD;
