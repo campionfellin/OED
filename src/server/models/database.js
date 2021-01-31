@@ -22,6 +22,7 @@ patchMomentType(pgp);
  * @return {pgPromise.IDatabase}
  */
 function getDB(connectionParameters) {
+	console.log(`campion2: ${JSON.stringify(connectionParameters)}`)
 	return pgp(connectionParameters);
 }
 

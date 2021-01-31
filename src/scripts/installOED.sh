@@ -7,7 +7,7 @@
 
 USAGE="Usage: $0 [--production] [--nostart] [--keep_node_modules] [--continue_on_db_error]"
 
-production=no
+production=yes
 dostart=yes
 keep_node_modules=no
 continue_on_db_error=no
@@ -80,8 +80,8 @@ while [ $create_error == 0 ]; do
     sleep 1
     printf "%s\n" "Attempting to create database."
     # Redirect stderr to a file
-    # npm run createdb |& tee /tmp/oed.error > /dev/null
-	createdb_code=0
+    npm run createdb |& tee /tmp/oed.error > /dev/null
+	createdb_code=${PIPESTATUS[0]}
 	if [ $createdb_code -ne 0 ]; then
 		# An error occurred during createdb.
 		# search the file for the kind of error we can recover from

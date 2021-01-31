@@ -25,6 +25,12 @@ let connmanager = {
  * Reuses an existing connection pool if one is available.
  */
 function getConnection() {
+
+
+	config.database.host = 'localhost'
+
+	console.log(`Campion ${JSON.stringify(config.database)}`)
+
 	if (connmanager.config === null) {
 		connmanager.config = config.database;
 	}

@@ -7,12 +7,13 @@ const { log } = require('../log');
 const { getConnection, dropConnection } = require('../db');
 (async function createSchemaWrapper() {
 	const conn = getConnection();
+	console.log(`campion3: ${conn}`)
 	try {
 		await createSchema(conn);
-		log.info('Schema created', null, true);
+		console.log('Schema created');
 		process.exitCode = 0;
 	} catch (err) {
-		log.error(`Error creating schema: ${err}`, err, skipMail = true);
+		console.log(`Error creating schema: ${err}`);
 		process.exitCode = 1;
 	} finally {
 		dropConnection();

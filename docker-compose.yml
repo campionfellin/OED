@@ -16,8 +16,14 @@ services:
             - POSTGRES_PASSWORD=pleaseChange # default postgres password that can be changed for security.
         volumes:
             - ./postgres-data:/var/lib/postgresql/data/pgdata
-        #ports:
-        #    - "5432:5432"
+        ports:
+           - "5432:5432"
+
+        healthcheck:
+            test: [ "CMD", "pg_isready", "-q", "-d", "travis_ci_dummy", "-U", "test" ]
+            interval: 45s
+            timeout: 10s
+            retries: 10
         # Uncomment the above lines to enable access to the PostgreSQL server
         # from the host machine.
     # Web service runs Node
@@ -41,6 +47,8 @@ services:
             - OED_MAIL_TO=mydomain@example.com  # Set the destination address here
             - OED_MAIL_ORG=My Organization Name # Org name for mail formatting
             - OED_OBVIUS_PASSWORD=password
+            - DATABASE_URL=postgres://oed:opened@localhost:5432/oed
+
             # If in a subdirectory, set it here
             # - OED_SUBDIR=/subdir/
         # Set the correct build environment.
@@ -63,10 +71,8 @@ services:
               # and disable the debug port
         # Don't bring this up without the DB
         depends_on:
-            - database
-                # database:
-                    # We need the database and it has to be ready for work (see healthcheck above).
-                # condition: service_healthy
+            database:
+                condition: service_healthy
         # Lets docker-compose up work right
         # If environment variable install_args is not set the it becomes blank without warning user.
         command: ["bash", "./src/scripts/installOED.sh", "${install_args:-}"]
