@@ -35,10 +35,11 @@ jobs:
 
     steps:
       # see: https://github.com/actions/checkout/issues/335
-      - name: git init
+      - name: git upgrade
         run: |
-          git init
-          git ls-files
+          add-apt-repository -y ppa:git-core/ppa
+          && apt-get update
+          && apt-get install git -y
 
       - name: Check out repository code
         uses: actions/checkout@v2
