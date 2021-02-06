@@ -34,14 +34,14 @@ jobs:
           - 5432:5432
 
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v2
-
       # see: https://github.com/actions/checkout/issues/335
       - name: git init
         run: |
           git init
           git ls-files
+
+      - name: Check out repository code
+        uses: actions/checkout@v2
 
       - name: Install dependencies
         run: npm ci
