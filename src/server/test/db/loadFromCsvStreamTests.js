@@ -93,11 +93,11 @@ mocha.describe('Read Mamac log from a file: ', () => {
 
 				console.log(`readRate: ${readRate}, endTimestamp: ${endTimestamp}, startTimestamp: ${startTimestamp}`)
 				return new Reading(meter.id, readRate, startTimestamp, endTimestamp);
-			}, (readings, tx) => Reading.insertOrIgnoreAll(readings, tx),
-			conn
-			);
+			}, (readings, tx) => Reading.insertOrIgnoreAll(readings, tx), conn);
 		} catch (e) {
+			console.log('-----------------')
 			console.log(e)
+			console.log('-----------------')
 			const count = await Reading.count(conn);
 			expect(count).to.equal(0);
 		}

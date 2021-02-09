@@ -52,10 +52,12 @@ function loadFromCsvStream(stream, mapRowToModel, bulkInsertModels, conn) {
 				}
 			}
 		});
-		parser.on('error', async err => {
+		parser.on('error', err => {
+			console.log('****************')
 			console.log(err)
+			console.log('****************')
 			if (!rejected) {
-				resolve(await t.batch(pendingInserts).then(() => Promise.reject(err)));
+				resolve(t.batch(pendingInserts).then(() => Promise.reject(err)));
 			}
 			rejected = true;
 		});
