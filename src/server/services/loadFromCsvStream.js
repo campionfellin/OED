@@ -55,6 +55,7 @@ function loadFromCsvStream(stream, mapRowToModel, bulkInsertModels, conn) {
 		parser.on('error', err => {
 			console.log('****************')
 			console.log(err)
+			console.log(`rejected? ${rejected}`)
 			console.log('****************')
 			if (!rejected) {
 				resolve(t.batch(pendingInserts).then(() => Promise.reject(err)));

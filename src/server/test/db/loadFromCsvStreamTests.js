@@ -99,6 +99,8 @@ mocha.describe('Read Mamac log from a file: ', () => {
 			console.log(e)
 			console.log('-----------------')
 			const count = await Reading.count(conn);
+			const all = await Reading.getAllByMeterID(meter.id)
+			console.log(`all: ${all}`)
 			expect(count).to.equal(0);
 		}
 	});
