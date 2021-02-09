@@ -54,7 +54,6 @@ function loadFromCsvStream(stream, mapRowToModel, bulkInsertModels, conn) {
 		});
 		parser.on('error', err => {
 			rejected = true;
-			resolve(t.batch(pendingInserts).then(() => Promise.reject(err)));
 		});
 		// Defines what happens when the parser's input stream is finished (and thus the promise needs to be resolved)
 		parser.on('finish', () => {
