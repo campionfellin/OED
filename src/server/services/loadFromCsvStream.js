@@ -53,14 +53,8 @@ function loadFromCsvStream(stream, mapRowToModel, bulkInsertModels, conn) {
 			}
 		});
 		parser.on('error', err => {
-			console.log('****************')
-			console.log(err)
-			console.log(`rejected? ${rejected}`)
-			console.log('****************')
 			rejected = true;
-			// if (!rejected) {
-			// 	resolve(t.batch(pendingInserts).then(() => Promise.reject(err)));
-			// }
+			resolve(t.batch(pendingInserts).then(() => Promise.reject(err)));
 		});
 		// Defines what happens when the parser's input stream is finished (and thus the promise needs to be resolved)
 		parser.on('finish', () => {
